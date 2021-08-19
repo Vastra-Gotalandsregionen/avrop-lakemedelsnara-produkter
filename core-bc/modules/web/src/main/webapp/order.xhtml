@@ -34,7 +34,7 @@
                         Här kan du beställa dina förskrivna förbrukningsprodukter. Du kan få dem levererade till ett utlämningsställe, din bostad eller annan leveransadress.
                     </p>
                     <p>
-                        Nedan ser du både vilka produkter du kan beställa och vilka som finns men inte går att beställa just nu. Klicka på plustecknet vid tidigare produkter så hittar du gamla recept från 12 månader tillbaka i tiden som inte längre är giltiga.
+                        Nedan ser du både vilka produkter du kan beställa och vilka som finns men inte går att beställa just nu. Klicka på plustecknet vid tidigare produkter så hittar du gamla förskrivningar från 12 månader tillbaka i tiden som inte längre är giltiga.
                     </p>
 
                 </div>
@@ -44,7 +44,7 @@
             <o:form includeRequestParams="true">
 
                 <h:panelGroup layout="block" rendered="#{empty orderController.medicalSupplyPrescriptions}" styleClass="alert alert-warning">
-                    #{msg['products.fetch.none.found']}
+                    <h:outputText escape="false" value="#{msg['products.fetch.none.found']}"></h:outputText>
                     <div><h:commandButton styleClass="button" action="#{orderController.reinit()}" value="Uppdatera"/> </div>
                 </h:panelGroup>
 
