@@ -197,6 +197,8 @@ public class OrderController {
     public String reinit() {
         ((HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest()).getSession().invalidate();
 
+        userProfileController.init();
+
         return "order" + ACTION_SUFFIX;
     }
 
