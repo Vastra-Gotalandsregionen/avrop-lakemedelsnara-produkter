@@ -9,23 +9,25 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import se._1177.lmn.service.LmnService;
 import se._1177.lmn.testconfig.RedisSessionConfig;
-import se._1177.lmn.testconfig.TestRedisConfiguration;
 
 import java.net.URL;
 
 import static org.junit.Assert.assertNotNull;
 
+// E.g. start a Docker container via 'docker run --name some-redis -p 6379:6379 -d redis'
+// to test the application context.
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {BeanConfig.class, CachingConfig.class, RedisSessionConfig.class, TestRedisConfiguration.class})
-public class BeanConfigApplicationContextTest {
+@ContextConfiguration(classes = {BeanConfig.class, CachingConfig.class, RedisSessionConfig.class/*, TestRedisConfiguration.class*/})
+public class BeanConfigApplicationContextIT {
 
     @Autowired
     private ApplicationContext ctx;
 
     @BeforeClass
     public static void setup() {
-        URL truststore = BeanConfigApplicationContextTest.class.getClassLoader().getResource("truststore.jks");
-        URL keystore = BeanConfigApplicationContextTest.class.getClassLoader().getResource("keystore.p12");
+        URL truststore = BeanConfigApplicationContextIT.class.getClassLoader().getResource("truststore.jks");
+        URL keystore = BeanConfigApplicationContextIT.class.getClassLoader().getResource("keystore.p12");
 
         System.setProperty("ssl_truststore", truststore.getFile());
         System.setProperty("ssl_keystore", keystore.getFile());

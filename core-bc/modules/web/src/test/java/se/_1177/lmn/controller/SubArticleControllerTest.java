@@ -1,5 +1,6 @@
 package se._1177.lmn.controller;
 
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,6 @@ import se._1177.lmn.controller.model.Cart;
 import se._1177.lmn.controller.model.PrescriptionItemInfo;
 import se._1177.lmn.controller.model.SubArticleDto;
 
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static se._1177.lmn.controller.util.TestUtil.getTodayPlusDays;
@@ -254,24 +251,12 @@ public class SubArticleControllerTest {
 
         String json = subArticleController.jsonEncode(model);
 
-        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval("" +
-                "var lengthOfObject = function(json) {" +
-                "print('JSON input: ' + json);" +
-                "return JSON.parse(json).length;" +
-                "};" +
-                "" +
-                "var nameOfSubArticleInSecondModel = function(json) {" +
-                "return JSON.parse(json)[1].subArticles[0].name;" +
-                "};");
+        JsonMapper mapper = new JsonMapper();
+        List<ArticleWithSubArticlesModel> articlesModels = mapper
+                .readerForListOf(ArticleWithSubArticlesModel.class).readValue(json);
 
-        Invocable invocable = (Invocable) engine;
-
-        Number lengthOfObject = (Number) invocable.invokeFunction("lengthOfObject", json);
-        String nameOfSubArticleInSecondModel = (String) invocable.invokeFunction("nameOfSubArticleInSecondModel", json);
-
-        assertEquals(2, lengthOfObject.intValue());
-        assertEquals("sub", nameOfSubArticleInSecondModel);
+        assertEquals(2, articlesModels.size());
+        assertEquals("sub", articlesModels.get(1).getSubArticles().get(0).getName());
     }
 
     @Test
