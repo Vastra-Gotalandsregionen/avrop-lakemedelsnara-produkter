@@ -5,7 +5,7 @@ services:
    restart: on-failure
  avrop:
   container_name: avrop-lakemedelsnara-produkter
-  image: vgr/avrop-lakemedelsnara-produkter:5.0.3
+  image: vgr/avrop-lakemedelsnara-produkter:5-latest
   ports:
    - 8080:8080
   volumes:
