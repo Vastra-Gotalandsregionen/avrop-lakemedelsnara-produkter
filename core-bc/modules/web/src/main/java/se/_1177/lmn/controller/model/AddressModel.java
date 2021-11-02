@@ -54,11 +54,7 @@ public class AddressModel implements Serializable {
             UserProfileType userProfile = userProfileController.getUserProfile();
 
             if (userProfile != null) {
-                phoneNumber = userProfile.getPhoneNumber();
-
-                if (phoneNumber == null || "".equals(phoneNumber)) {
-                    phoneNumber = userProfile.getMobilePhoneNumber();
-                }
+                phoneNumber = userProfile.getMobilePhoneNumber();
             }
         }
     }
