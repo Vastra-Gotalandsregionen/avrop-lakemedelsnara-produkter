@@ -16,6 +16,8 @@ import java.util.List;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Cart implements Serializable {
 
+    private List<OrderRowType> successfullyOrderedRows = new ArrayList<>();
+
     private List<OrderRowType> orderRows = new ArrayList<>();
 
     public List<OrderRowType> getOrderRows() {
@@ -45,4 +47,37 @@ public class Cart implements Serializable {
         return null;
     }
 
+    public List<OrderRowType> getSuccessfullyOrderedRows() {
+        return successfullyOrderedRows;
+    }
+
+    public void setSuccessfullyOrderedRows(List<OrderRowType> successfullyOrderedRows) {
+        this.successfullyOrderedRows = successfullyOrderedRows;
+    }
+
+    /*@Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        RegisterMedicalSupplyOrderType registerMedicalSupplyOrderType = new riv.crm.selfservice.medicalsupply.registermedicalsupplyorderresponder._1.ObjectFactory().createRegisterMedicalSupplyOrderType();
+        OrderType order = new OrderType();
+        order.getOrderRow().addAll(orderRows);
+        registerMedicalSupplyOrderType.setOrder(order);
+
+        JAXBElement<RegisterMedicalSupplyOrderType> registerMedicalSupplyOrder = new riv.crm.selfservice.medicalsupply.registermedicalsupplyorderresponder._1.ObjectFactory().createRegisterMedicalSupplyOrder(registerMedicalSupplyOrderType);
+
+       *//* registerMedicalSupplyOrder.
+
+        new ObjectFactory().
+        OrderType orderType = new JAXBElement<OrderType>()new ObjectFactory().createOrderType();
+        orderType.getOrderRow().addAll(orderRows);*//*
+        out.writeObject(objectToXML(registerMedicalSupplyOrder));
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        RegisterMedicalSupplyOrderType registerMedicalSupplyOrderType = readObject(in, RegisterMedicalSupplyOrderType.class);
+
+        if (registerMedicalSupplyOrderType != null) {
+            orderRows = registerMedicalSupplyOrderType.getOrder().getOrderRow();
+        }
+    }*/
 }

@@ -1,6 +1,7 @@
 version: "3"
 services:
  avrop-lakemedelsnara-produkter:
+  platform: linux/amd64
   build:
    context: ..
   image: vgr/avrop-lakemedelsnara-produkter:5-latest

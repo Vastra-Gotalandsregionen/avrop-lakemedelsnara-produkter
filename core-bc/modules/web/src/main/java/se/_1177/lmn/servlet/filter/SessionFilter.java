@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -160,10 +161,22 @@ public class SessionFilter implements Filter {
     }
 
     private void redirectToOrderPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-
         String queryString = "";
-        Object sessionObjectId = session.getAttribute(OBJECTID_PARAMETER);
+        Object sessionObjectId = null;
+
+        try {
+            HttpSession session = request.getSession();
+
+            queryString = "";
+            sessionObjectId = session.getAttribute(OBJECTID_PARAMETER);
+        } catch (Exception e) {
+            // If we can't "getSession()", reset session this way.
+            LOGGER.error(e.getMessage(), e);
+            Cookie cookie = new Cookie("SESSION", "");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+
         if (sessionObjectId != null && !"".equals(sessionObjectId)) {
             queryString = "?objectId=" + sessionObjectId;
         }

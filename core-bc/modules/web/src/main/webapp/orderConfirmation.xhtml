@@ -31,6 +31,25 @@
                     </h:panelGroup>
 
                 </div>
+
+                <h:panelGroup class="section" rendered="#{orderConfirmationController.articlesWithZeroOrdersRemaining.size() gt 0}">
+                    Artiklar med <strong>0 uttag</strong> kvar:
+                    <ul style="list-style: inside">
+                        <ui:repeat value="#{orderConfirmationController.articlesWithZeroOrdersRemaining}" var="article">
+                            <li>#{article.articleName}</li>
+                        </ui:repeat>
+                    </ul>
+                </h:panelGroup>
+
+                <h:panelGroup class="section" rendered="#{orderConfirmationController.articlesWithOneOrderRemaining.size() gt 0}">
+                    Artiklar med <strong>1 uttag</strong> kvar:
+                    <ul style="list-style: inside">
+                        <ui:repeat value="#{orderConfirmationController.articlesWithOneOrderRemaining}" var="article">
+                            <li>#{article.articleName}</li>
+                        </ui:repeat>
+                    </ul>
+                </h:panelGroup>
+
                 <div class="right-align">
                     <a href="#{utilController.mvkInboxLink}" class="button">Till inkorgen</a>
                     <a href="#{utilController.mvkStartPageLink}" class="button">Avsluta</a>
