@@ -16,6 +16,8 @@ import java.util.List;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class Cart implements Serializable {
 
+    private List<OrderRowType> successfullyOrderedRows = new ArrayList<>();
+
     private List<OrderRowType> orderRows = new ArrayList<>();
 
     public List<OrderRowType> getOrderRows() {
@@ -43,6 +45,14 @@ public class Cart implements Serializable {
         }
 
         return null;
+    }
+
+    public List<OrderRowType> getSuccessfullyOrderedRows() {
+        return successfullyOrderedRows;
+    }
+
+    public void setSuccessfullyOrderedRows(List<OrderRowType> successfullyOrderedRows) {
+        this.successfullyOrderedRows = successfullyOrderedRows;
     }
 
     /*@Override

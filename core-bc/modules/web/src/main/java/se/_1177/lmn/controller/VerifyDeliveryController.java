@@ -23,6 +23,7 @@ import se._1177.lmn.service.ThreadLocalStore;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This class corresponds to the verifyDelivery view. The main concern is to confirm/register the order.
@@ -138,6 +139,8 @@ public class VerifyDeliveryController {
                     String msg = "Din beställning har utförts men tyvärr kunde inget kvitto skickas till din inkorg.";
                     utilController.addErrorMessageWithCustomerServiceInfo(msg);
                 }
+
+                cart.setSuccessfullyOrderedRows(List.copyOf(cart.getOrderRows()));
 
                 resetCartAndRelated();
 
