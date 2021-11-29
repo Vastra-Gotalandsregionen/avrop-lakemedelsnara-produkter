@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import riv.crm.selfservice.medicalsupply._1.ArticleType;
-import riv.crm.selfservice.medicalsupply._1.PrescriptionItemType;
+import riv.crm.selfservice.medicalsupply._2.ArticleType;
+import riv.crm.selfservice.medicalsupply._2.PrescriptionItemType;
 import se._1177.lmn.controller.model.Cart;
 import se._1177.lmn.controller.session.OrderControllerSession;
 
