@@ -28,14 +28,14 @@ The application is written in the Java language for backend and Facelets for vie
 
 Prerequsites in order to build the application:
 
-* Java 8
+* Java 11
 * Maven 3.x
 
 The primary frameworks/libraries used are:
 
 * Java Server Faces 2.2
-* Spring Framework 4.2.5
-* Apache CXF 3.1.6 (For JAX-WS support)
+* Spring Framework 5.2.1
+* Apache CXF 3.3.4 (For JAX-WS support)
 
 ## Getting started
 
