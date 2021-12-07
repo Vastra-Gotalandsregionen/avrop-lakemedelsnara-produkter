@@ -45,7 +45,7 @@
                     Artiklar med <strong>1 uttag</strong> kvar:
                     <ul style="list-style: inside">
                         <ui:repeat value="#{orderConfirmationController.articlesWithOneOrderRemaining}" var="article">
-                            <li>#{article.articleName}</li>
+                            <li>#{article.articleNo} - #{article.articleName}</li>
                         </ui:repeat>
                     </ul>
                 </h:panelGroup>
