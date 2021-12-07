@@ -36,7 +36,7 @@
                     Artiklar med <strong>0 uttag</strong> kvar:
                     <ul style="list-style: inside">
                         <ui:repeat value="#{orderConfirmationController.articlesWithZeroOrdersRemaining}" var="article">
-                            <li>#{article.articleName}</li>
+                            <li>#{article.articleNo} - #{article.articleName}</li>
                         </ui:repeat>
                     </ul>
                 </h:panelGroup>
