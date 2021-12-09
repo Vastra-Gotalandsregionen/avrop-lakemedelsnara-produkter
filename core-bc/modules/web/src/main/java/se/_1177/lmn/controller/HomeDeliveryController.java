@@ -40,6 +40,7 @@ import static se._1177.lmn.model.NotificationOrDoorDelivery.DOOR;
 import static se._1177.lmn.model.NotificationOrDoorDelivery.NOTIFICATION;
 import static se._1177.lmn.model.NotificationVariant.*;
 import static se._1177.lmn.service.util.Constants.ACTION_SUFFIX;
+import static se._1177.lmn.service.util.Util.possiblyFixPhoneNumber;
 
 /**
  * @author Patrik Björk
@@ -88,7 +89,9 @@ public class HomeDeliveryController {
                     sessionData.setPreferredDeliveryNotificationMethod(BREV);
                 }
 
-                sessionData.setSmsNumber(userProfile.getMobilePhoneNumber());
+                String mobilePhoneNumber = userProfile.getMobilePhoneNumber();
+                mobilePhoneNumber = possiblyFixPhoneNumber(mobilePhoneNumber);
+                sessionData.setSmsNumber(mobilePhoneNumber);
                 sessionData.setEmail(userProfile.getEmail());
 
             } else {

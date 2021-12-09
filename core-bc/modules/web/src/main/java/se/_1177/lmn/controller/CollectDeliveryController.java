@@ -53,6 +53,7 @@ import java.util.stream.Collectors;
 import static riv.crm.selfservice.medicalsupply._2.DeliveryMethodEnum.HEMLEVERANS;
 import static riv.crm.selfservice.medicalsupply._2.DeliveryMethodEnum.UTLÄMNINGSSTÄLLE;
 import static se._1177.lmn.service.util.Constants.ACTION_SUFFIX;
+import static se._1177.lmn.service.util.Util.possiblyFixPhoneNumber;
 
 /**
  * Controller class which handles the model for the view where collect delivery is chosen. The complex part comes when
@@ -145,7 +146,9 @@ public class CollectDeliveryController {
                     sessionData.setPreferredDeliveryNotificationMethod(DeliveryNotificationMethodEnum.BREV);
                 }
 
-                sessionData.setSmsNumber(userProfile.getMobilePhoneNumber());
+                String mobilePhoneNumber = userProfile.getMobilePhoneNumber();
+                mobilePhoneNumber = possiblyFixPhoneNumber(mobilePhoneNumber);
+                sessionData.setSmsNumber(mobilePhoneNumber);
                 sessionData.setEmail(userProfile.getEmail());
 
             } else {
