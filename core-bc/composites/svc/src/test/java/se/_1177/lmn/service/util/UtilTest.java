@@ -146,4 +146,24 @@ public class UtilTest {
         return year13YearsAgo + month + day + "nnnn";
     }
 
+    @Test
+    public void possiblyFixPhoneNumber() {
+
+        String n1 = "0701234567";
+        String n2 = "701234567";
+        String n3 = "08112233";
+        String n4 = "46701234567";
+        String n5 = "+46701234567";
+        String n6 = "00701234567";
+        String n7 = "123";
+
+        assertEquals("0701234567", Util.possiblyFixPhoneNumber(n1));
+        assertEquals("+701234567", Util.possiblyFixPhoneNumber(n2)); // Even if this doesn't make sense? We can't know it doesn't start with a country code?
+        assertEquals("08112233", Util.possiblyFixPhoneNumber(n3));
+        assertEquals("+46701234567", Util.possiblyFixPhoneNumber(n4));
+        assertEquals("+46701234567", Util.possiblyFixPhoneNumber(n5));
+        assertEquals("00701234567", Util.possiblyFixPhoneNumber(n6));
+        assertEquals("123", Util.possiblyFixPhoneNumber(n7));
+    }
+
 }

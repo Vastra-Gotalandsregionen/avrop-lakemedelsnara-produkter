@@ -135,4 +135,11 @@ public class Util {
 
         return new ObjectFactory().createDeliveryChoiceTypeDeliveryNotificationMethod(notificationMethod);
     }
+
+    public static String possiblyFixPhoneNumber(String phoneNumber) {
+        if (phoneNumber != null && phoneNumber.length() > 7 && !(phoneNumber.startsWith("0") || phoneNumber.startsWith("+"))) {
+            phoneNumber = "+" + phoneNumber;
+        }
+        return phoneNumber;
+    }
 }

@@ -3,6 +3,7 @@ package se._1177.lmn.controller.model;
 import mvk.itintegration.userprofile._2.UserProfileType;
 import riv.crm.selfservice.medicalsupply._1.AddressType;
 import se._1177.lmn.controller.UserProfileController;
+import se._1177.lmn.service.util.Util;
 
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
@@ -55,6 +56,7 @@ public class AddressModel implements Serializable {
 
             if (userProfile != null) {
                 phoneNumber = userProfile.getMobilePhoneNumber();
+                phoneNumber = Util.possiblyFixPhoneNumber(phoneNumber);
             }
         }
     }
