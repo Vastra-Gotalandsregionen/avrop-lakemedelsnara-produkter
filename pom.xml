@@ -24,6 +24,7 @@
         <spring.version>5.2.1.RELEASE</spring.version>
         <jsf.version>2.2.20</jsf.version>
         <apache.cxf.version>3.3.4</apache.cxf.version>
+        <log4j.version>2.17.1</log4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <revision>4.0.9-SNAPSHOT</revision>
