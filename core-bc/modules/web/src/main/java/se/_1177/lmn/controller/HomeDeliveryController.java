@@ -404,7 +404,7 @@ public class HomeDeliveryController {
                     return notificationMandatoryModel.getEmail();
                 default:
                     throw new IllegalArgumentException(
-                            "This method is not expected to be called when other notification methods are chosen."
+                            "This method (" + method + ") is not expected to be called when other notification methods are chosen."
                     );
             }
         }

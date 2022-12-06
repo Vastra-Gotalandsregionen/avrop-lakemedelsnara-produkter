@@ -1,0 +1,16 @@
+counties:
+  default:
+    getMedicalSupplyDeliveryPointsAddress:
+    getMedicalSupplyPrescriptionsAddress:
+    registerMedicalSupplyOrderAddress:
+    rtjpLogicalAddress:
+    receptionHsaId:
+    defaultSelectedPrescriptions: true
+
+  14:
+    getMedicalSupplyDeliveryPointsAddress: http://localhost:18080/GetMedicalSupplyDeliveryPoints
+    getMedicalSupplyPrescriptionsAddress: http://localhost:18080/GetMedicalSupplyPrescriptions
+    registerMedicalSupplyOrderAddress: http://localhost:18080/RegisterMedicalSupplyOrder
+    rtjpLogicalAddress: SE00000000-E000000000001
+    receptionHsaId: SE99999999-S000000000001
+    defaultSelectedPrescriptions: true
