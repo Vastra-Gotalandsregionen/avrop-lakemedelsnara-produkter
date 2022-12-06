@@ -1,0 +1,9 @@
+# Just type 'docker-compose up' in this directory.
+version: "2"
+services:
+  postgresql-samlingssidan:
+    image: redis
+    container_name: avrop-redis
+    ports:
+      - 6379:6379
+    restart: on-failure

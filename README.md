@@ -36,8 +36,13 @@ The primary frameworks/libraries used are:
 * Java Server Faces 2.2
 * Spring Framework 5.2.1
 * Apache CXF 3.3.4 (For JAX-WS support)
+* Redis (for storing HTTP sessions)
 
 ## Getting started
+
+Before starting the application, start a Redis container via ``docker-compose -f dockerfiles/redis-docker-compose.yml up``.
+
+Also, the property files under ``example-properties`` may be placed in a directory added to the classpath (note that the keystore files should be placed elsewhere, according the entered properties).
 
 Build and dependencies are managed by Maven. To build the project, perform a ``git clone`` and run ``mvn package``.
 

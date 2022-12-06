@@ -1,0 +1,1 @@
+Place the contents of this directory, except example-keystore.p12 and example-truststore.jks, in a directory, external from the application, which is added to the classpath. Place example-keystore.p12 and example-truststore.jsk in /opt/data/certs. 
