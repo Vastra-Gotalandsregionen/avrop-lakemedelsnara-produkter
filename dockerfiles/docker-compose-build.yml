@@ -4,4 +4,4 @@ services:
   platform: linux/amd64
   build:
    context: ..
-  image: vgr/avrop-lakemedelsnara-produkter:4.0.9
+  image: vgr/avrop-lakemedelsnara-produkter:4.0.10-SNAPSHOT
