@@ -46,7 +46,7 @@ Also, the property files under ``example-properties`` may be placed in a directo
 
 Build and dependencies are managed by Maven. To build the project, perform a ``git clone`` and run ``mvn package``.
 
-In order to run the application, deploy it to a servlet container, e.g. Tomcat 8. Make sure the file application.properties is found on the classpath. It is possible to have endpoints configured for localhost if mocked services are started.
+In order to run the application, deploy it to a servlet container, e.g. Tomcat 9. Make sure the file application.properties is found on the classpath. It is possible to have endpoints configured for localhost if mocked services are started.
 
 ### Running locally without SAML service provider reverse proxy
 Normally the application checks a header to check which user is authenticated. In a local environment it may be necessary to use the application without a service provider. There are two options to achieve this:
