@@ -19,189 +19,306 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
     <link href="javax.faces.resource/img/favicon.ico.xhtml?ln=default" rel="Shortcut Icon"/>
+
+    <link rel="stylesheet" href="javax.faces.resource/fonts/inter/inter.css.xhtml?ln=assets" />
+    <link rel="stylesheet" href="javax.faces.resource/fonts/open-sans/open-sans.css.xhtml?ln=assets" />
 </h:head>
 
-<h:body>
+<h:body styleClass="ic-body">
     <title>Avrop förskrivna förbrukningsprodukter</title>
     <script>
         var jq = $.noConflict();
     </script>
 
     <h:outputScript library="default" name="js/avrop-mvk.js"/>
-    <h:outputStylesheet library="default" name="css/style.css"/>
+    <h:outputStylesheet library="default" name="css/1177-master.css"/>
+<!--    <h:outputStylesheet library="default" name="css/style.css"/>-->
     <h:outputStylesheet library="vardguiden" name="css/styles.css"/>
-    <h:outputStylesheet library="default" name="css/vardguiden/components2.css"/>
-    <h:outputStylesheet library="default" name="css/custom.css"/>
+<!--    <h:outputStylesheet library="default" name="css/vardguiden/components2.css"/>-->
+<!--    <h:outputStylesheet library="default" name="css/custom.css"/>-->
 
-    <div id="container">
-        <div id="wrapper" class="wrapper">
-            <div id="header">
-                <div class="wrapper">
-                    <div class="header-top">
-                        <div class="header-icon-wrapper">
-                            <div class="header-left">
-                                <div class="icon-1177"></div>
-                            </div>
-                        </div>
-                        <div class="header-right">
-                            <div class="user-icon"></div>
+<!--    <div id="container">-->
+<!--        <div id="wrapper" class="wrapper">-->
+    <header class="ic-page-header">
+        <div class="ic-page-header__container">
+            <div class="ic-page-header__inner">
+                <div class="ic-page-header__item ic-page-header__logo-container">
+                    <a class="ic-page-header__logo-link" href="#/">
+                        <span class="ic-page-header__logo-link-text"> 1177 </span>
+                    </a>
+                </div>
 
-                            <div class="user-wrapper">
-                                <p>#{userProfileController.loggedInUser.firstName} #{userProfileController.loggedInUser.lastName}</p>
-                                <h:outputLink value="#{utilController.settingsLink}" styleClass="settingsButton" rendered="#{!userProfileController.delegate}">Inställningar</h:outputLink>
-                                <h:outputLink value="#{utilController.backToOwnProfileLink}" styleClass="settingsButton" rendered="#{userProfileController.delegate}">Avbryt ombudsläge</h:outputLink>
-                                <h:outputLink value="#{utilController.logoutLink}" styleClass="logoutButton">Logga ut</h:outputLink>
-                            </div>
-                        </div>
+                <div class="ic-page-header__item iu-gutter ic-avatar-box">
+                    <div
+                            role="presentation"
+                            class="iu-svg-icon iu-mr-300 ic-avatar-box__icon"
+                    >
+                        <svg
+
+                                viewBox="0 0 33 40"
+                                fill="none"
+                                width="33"
+                                height="40"
+                                aria-hidden="true"
+                        >
+                            <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M10.478 9.037a1 1 0 0 1 1-1h4.547a1 1 0 0 1 1 1v4.741h1.272a1 1 0 1 1 0 2h-2.272a1 1 0 0 1-1-1v-4.74h-3.547a1 1 0 0 1-1-1Z"
+                                    fill="#C12143"
+                            />
+                            <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M15.972 0C10.495 0 5.741 4.708 5.741 10.273c0 3 1.222 6.062 3.058 8.376 1.824 2.299 4.392 4.017 7.173 4.017 3.143 0 5.971-1.598 7.99-3.898 2.018-2.3 3.297-5.378 3.297-8.495C27.259 4.446 22.229 0 15.972 0ZM7.741 10.273C7.741 5.813 11.599 2 15.972 2c5.346 0 9.287 3.734 9.287 8.273 0 2.586-1.071 5.205-2.8 7.176-1.73 1.97-4.044 3.217-6.487 3.217-1.95 0-3.999-1.235-5.607-3.26-1.596-2.012-2.624-4.646-2.624-7.133Zm9.333 13.838c-5.541 0-9.5 1.083-12.15 3.642-1.89 1.823-2.716 3.592-4.001 8.002v.001l-.273.93v.002c-.226.757-.406 1.33-.594 1.87A1 1 0 0 0 1 39.889h31a1 1 0 0 0 .945-1.328 40.372 40.372 0 0 1-.592-1.87v-.001l-.333-1.144v-.001c-1.23-4.274-2.045-6.075-3.783-7.849-2.467-2.518-6.11-3.584-11.163-3.584ZM6.312 29.192c2.1-2.027 5.422-3.081 10.762-3.081 4.815 0 7.811 1.021 9.734 2.984 1.373 1.4 2.078 2.791 3.29 7.004l.335 1.15v.004l.19.635h-4.046l-.882-3.787a1 1 0 0 0-1.948.454l.777 3.333H8.476l.777-3.333a1 1 0 1 0-1.948-.454l-.883 3.787H2.376c.061-.199.124-.408.19-.631l.002-.003.275-.938c1.263-4.336 1.972-5.68 3.47-7.124Z"
+                                    fill="#6A0032"
+                            />
+                        </svg>
                     </div>
+                    <div class="iu-lh-narrow">
+                        <p class="ic-avatar-box__name">#{userProfileController.loggedInUser.firstName} #{userProfileController.loggedInUser.lastName}</p>
 
-                    <div class="header-bottom">
-                        <h:panelGroup layout="block" styleClass="header-bottom-left" rendered="#{!userProfileController.delegate}">
-                            <a href="#{utilController.settingsLink}">Inställningar</a>
-                        </h:panelGroup>
-
-                        <h:panelGroup layout="block" styleClass="header-bottom-left" rendered="#{userProfileController.delegate}">
-                            <a href="#{utilController.backToOwnProfileLink}">Tillbaka till #{userProfileController.loggedInUser.firstName} #{userProfileController.loggedInUser.lastName}</a>
-                        </h:panelGroup>
-
-                        <div class="header-bottom-right">
-                            <a href="#{utilController.logoutLink}">Logga ut</a>
-                        </div>
+                        <nav aria-label="Användarmeny">
+                            <ul>
+                                <li class="iu-hide-md iu-hide-sm iu-display-flex">
+                                    <a
+                                            href="javascript:void(0)"
+                                            class="iu-link-divider-right iu-color-main"
+                                    >Inställningar TODO</a
+                                    >
+                                </li>
+                                <li class="iu-hide-md iu-hide-sm iu-display-flex">
+                                    <a href="javascript:void(0)" class="iu-color-main">Logga ut TODO</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
 
+            <nav class="ic-nav iu-fs-200 iu-hide-from-lg ic-nav--full ic-nav--divider iu-bg-secondary-light">
+                <ul class="ic-container">
+                    <li>
+                        <a href="javascript:void(0)">Avbryt ombudsläge</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Logga ut</a>
+                    </li>
+                </ul>
+            </nav>
 
-            <div class="breadcrumbs-container">
-                <div class="breadcrumbs">
-                    <o:form>
-                        <a class="link" href="#{utilController.mvkStartPageLink}">Start</a>&#160;»&#160;<a class="link" href="#{utilController.mvkOtherServicesLink}">Övriga tjänster</a>&#160;»&#160;
-                        <ui:repeat value="#{navigationController.views}" var="view_" varStatus="varStatus">
-                            <span class="link-section"><h:commandLink styleClass="link" value="#{view_.label}" action="#{navigationController.goBackTo(view_)}"/>
-                            <ui:fragment rendered="#{not varStatus.last}">
-                                &#160;»&#160;
-                            </ui:fragment>
-                            </span>
-                        </ui:repeat>
-                    </o:form>
-                </div><!--breadcrumbs-->
-            </div><!--breadcrumbs-container-->
+            <!--<div class="header-top">
+                <div class="header-icon-wrapper">
+                    <div class="header-left">
+                        <div class="icon-1177"></div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-icon"></div>
 
-            <h:panelGroup class="delegate-container clearfix" rendered="#{userProfileController.delegate}">
-                <div class="delegate-block">
-                    <div class="delegate-header">
-                        <div class="_1177-delegate-title">
-                            <div class="_1177-header-info">
-                                Du agerar just nu ombud och utför därmed ärenden åt <span class="delegate-name no-wrap">#{userProfileController.userProfile.firstName} #{userProfileController.userProfile.lastName}</span>
-                                <span class="toggle-trigger info-icon expand" data-toggle-for="delegateInfo"/>
-                                <div class="_1177-delegate-settings clearfix"><a class="_1177-delegate-settings-link link" href="#{utilController.settingsLink}">Inställningar</a></div>
+                    <div class="user-wrapper">
+                        <p>#{userProfileController.loggedInUser.firstName} #{userProfileController.loggedInUser.lastName}</p>
+                        <h:outputLink value="#{utilController.settingsLink}" styleClass="settingsButton" rendered="#{!userProfileController.delegate}">Inställningar</h:outputLink>
+                        <h:outputLink value="#{utilController.backToOwnProfileLink}" styleClass="settingsButton" rendered="#{userProfileController.delegate}">Avbryt ombudsläge</h:outputLink>
+                        <h:outputLink value="#{utilController.logoutLink}" styleClass="logoutButton">Logga ut</h:outputLink>
+                    </div>
+                </div>
+            </div>-->
 
-                                <div id="delegateInfo" class="expanded-content" style="display: none;">
-                                    Den vårdgivare du har kontakt med ser vem som utför ärendet.
+            <!--<div class="header-bottom">
+                <h:panelGroup layout="block" styleClass="header-bottom-left" rendered="#{!userProfileController.delegate}">
+                    <a href="#{utilController.settingsLink}">Inställningar</a>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="header-bottom-left" rendered="#{userProfileController.delegate}">
+                    <a href="#{utilController.backToOwnProfileLink}">Tillbaka till #{userProfileController.loggedInUser.firstName} #{userProfileController.loggedInUser.lastName}</a>
+                </h:panelGroup>
+
+                <div class="header-bottom-right">
+                    <a href="#{utilController.logoutLink}">Logga ut</a>
+                </div>
+            </div>-->
+        </div>
+    </header>
+
+    <div data-ic-sticky="true" class="ic-sticky--sm ic-agent-notice ic-global-alert ic-global-alert--expanded ic-global-alert--expandable">
+        <div class="ic-global-alert__inner">
+            <i class="ic-global-alert__icon iu-svg-icon">
+<!--                        <ui:include src="/resources/svg/agent.svg" />-->
+<!--                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="40" height="34" viewBox="0 0 40 34">-->
+                <svg aria-hidden="true" focusable="false" width="40" height="34" viewBox="0 0 40 34">
+                    <g fill="none" transform="translate(.65 .582)">
+                        <g transform="translate(14.19 3.333)">
+                            <path fill="#353535" d="M18.901148,7.61886161 C18.901148,4.11178963 15.8862695,1.30609056 11.8928571,1.30609056 C8.62685318,1.30609056 5.73405612,4.22640249 5.73405612,7.61886161 C5.73405612,11.4707184 8.87151701,15.6730867 11.8928571,15.6730867 C15.6276956,15.6730867 18.901148,11.6312217 18.901148,7.61886161 Z M20.1753827,7.61886161 C20.1753827,12.3043962 16.3893401,16.9791773 11.8928571,16.9791773 C8.0821488,16.9791773 4.45982143,12.1273706 4.45982143,7.61886161 C4.45982143,3.50057972 7.92741905,0 11.8928571,0 C16.5640188,0 20.1753827,3.36079886 20.1753827,7.61886161 Z"/>
+                            <g fill="#353535" transform="translate(.212 18.285)">
+                                <path d="M22.6950521,10.4487245 C22.6368461,10.2563014 22.5770236,10.052733 22.5138192,9.83285687 C22.4465486,9.59883564 22.4344536,9.55593538 22.2663068,8.95728415 C21.4398889,6.01499776 20.9156626,4.76169638 19.8062529,3.60093796 C18.3637833,2.0917042 16.0973434,1.30609056 12.5304929,1.30609056 C8.57360505,1.30609056 6.06709945,2.11817396 4.49702668,3.67234053 C3.30000879,4.85723159 2.75536925,6.11960902 1.90163371,9.12176512 C1.76692078,9.59548235 1.75332189,9.64317058 1.698203,9.8338278 C1.63418057,10.0552825 1.57434368,10.2581902 1.51660898,10.4487245 L22.6950521,10.4487245 Z M0.0358174873,10.8874167 C0.177633349,10.469097 0.312247989,10.0308268 0.476479362,9.4627475 C0.530809458,9.27481873 0.544300583,9.2275084 0.678308184,8.75627145 C1.59281171,5.5404251 2.20202399,4.12837955 3.61185124,2.73283507 C5.44927201,0.914028966 8.27043388,3.67869001e-13 12.5304929,3.67869001e-13 C16.4136616,3.67869001e-13 19.0078599,0.899224141 20.7164838,2.68693115 C22.0238229,4.05478009 22.6067266,5.44836522 23.4908051,8.59594029 C23.6579482,9.19101772 23.6699333,9.23352829 23.7361026,9.46371843 C23.8961787,10.0205923 24.0326692,10.4655763 24.1756786,10.8874167 C24.3195362,11.3117591 24.0121351,11.7548151 23.5738603,11.7548151 L0.637635807,11.7548151 C0.199360971,11.7548151 -0.108040127,11.3117591 0.0358174873,10.8874167 Z"/>
+                                <path d="M19.318767 10.6836183C19.3872868 11.0373809 19.1630465 11.3810972 18.8179122 11.45133 18.4727779 11.5215628 18.137445 11.2917164 18.0689252 10.9379538L17.4225743 7.6008924C17.3540545 7.24712977 17.5782948 6.90341355 17.9234291 6.83318075 18.2685634 6.76294794 18.6038963 6.99279428 18.6724161 7.34655692L19.318767 10.6836183zM5.1419066 7.34649067C5.21042641 6.99272803 5.54575931 6.76288169 5.89089358 6.8331145 6.23602786 6.9033473 6.46026819 7.24706352 6.39174838 7.60082615L5.74539745 10.9378875C5.67687764 11.2916502 5.34154475 11.5214965 4.99641047 11.4512637 4.6512762 11.3810309 4.42703586 11.0373147 4.49555567 10.6835521L5.1419066 7.34649067z"/>
+                            </g>
+                            <path fill="#636466" d="M11.2557398,7.40117985 L8.49489796,7.40117985 C8.14302776,7.40117985 7.85778061,7.10880152 7.85778061,6.74813457 C7.85778061,6.38746762 8.14302776,6.09508929 8.49489796,6.09508929 L11.8928571,6.09508929 C12.2447273,6.09508929 12.5299745,6.38746762 12.5299745,6.74813457 L12.5299745,10.4487245 L13.5918367,10.4487245 C13.9437069,10.4487245 14.2289541,10.7411028 14.2289541,11.1017698 C14.2289541,11.4624367 13.9437069,11.7548151 13.5918367,11.7548151 L11.8928571,11.7548151 C11.5409869,11.7548151 11.2557398,11.4624367 11.2557398,11.1017698 L11.2557398,7.40117985 Z"/>
+                        </g>
+                        <path fill="#353535" d="M15.0540675,6.06814236 C15.0540675,3.27488883 12.6528279,1.04025298 9.47222222,1.04025298 C6.87097048,1.04025298 4.56696429,3.36617376 4.56696429,6.06814236 C4.56696429,9.1360043 7.06583621,12.4830357 9.47222222,12.4830357 C12.4468834,12.4830357 15.0540675,9.26383923 15.0540675,6.06814236 Z M16.0689484,6.06814236 C16.0689484,9.79999791 13.0535051,13.5232887 9.47222222,13.5232887 C6.43713353,13.5232887 3.55208333,9.65900355 3.55208333,6.06814236 C3.55208333,2.78808268 6.31389699,0 9.47222222,0 C13.1926302,0 16.0689484,2.67675238 16.0689484,6.06814236 Z"/>
+                        <g fill="#353535" transform="translate(.169 14.564)">
+                            <path d="M18.0757722,8.32202381 C18.0294133,8.16876594 17.9817669,8.00663117 17.9314269,7.83150796 C17.8778484,7.64511868 17.8682151,7.6109502 17.7342924,7.13414657 C17.0760811,4.79072394 16.6585541,3.7925156 15.7749502,2.86801432 C14.6260764,1.66596527 12.8209405,1.04025298 9.98007563,1.04025298 C6.82856031,1.04025298 4.83222101,1.68704746 3.58171594,2.92488383 C2.62833533,3.86860588 2.19455002,4.87404295 1.51458113,7.2651496 C1.40728725,7.6424479 1.39645624,7.68042982 1.35255608,7.83228127 C1.30156457,8.00866181 1.25390669,8.17027026 1.20792314,8.32202381 L18.0757722,8.32202381 Z M0.0285273081,8.67142602 C0.141478413,8.33824979 0.24869401,7.98918368 0.379498244,7.53672949 C0.422770162,7.38705115 0.433515346,7.34937022 0.540247459,6.97404737 C1.2686158,4.41274432 1.75383092,3.28810209 2.87670634,2.17660238 C4.34014424,0.727990371 6.58709565,-2.22538037e-13 9.98007563,-2.22538037e-13 C13.0728763,-2.22538037e-13 15.1390596,0.716198874 16.4999155,2.14004159 C17.541163,3.22948284 18.0054242,4.33942202 18.7095602,6.84634951 C18.8426834,7.32030674 18.8522292,7.35416484 18.9049306,7.5375028 C19.0324253,7.98103228 19.1411349,8.33544569 19.2550367,8.67142602 C19.3696139,9.00939905 19.1247803,9.36227679 18.7757106,9.36227679 L0.50785341,9.36227679 C0.158783663,9.36227679 -0.0860499775,9.00939905 0.0285273081,8.67142602 Z"/>
+                            <path d="M15.3866856 8.50910807C15.4412591 8.79086697 15.26266 9.06462426 14.9877733 9.1205621 14.7128865 9.17649994 14.4458062 8.9934358 14.3912327 8.71167691L13.8764381 6.05383055C13.8218646 5.77207166 14.0004637 5.49831436 14.2753504 5.44237652 14.5502372 5.38643869 14.8173175 5.56950282 14.871891 5.85126172L15.3866856 8.50910807zM4.09533903 5.85120895C4.14991253 5.56945005 4.41699281 5.38638592 4.69187954 5.44232376 4.96676627 5.4982616 5.14536542 5.77201889 5.09079192 6.05377778L4.57599724 8.71162414C4.52142374 8.99338303 4.25434345 9.17644717 3.97945672 9.12050933 3.70457 9.06457149 3.52597084 8.7908142 3.58054434 8.5090553L4.09533903 5.85120895z"/>
+                        </g>
+                        <path fill="#636466" d="M8.96478175,5.89476687 L6.76587302,5.89476687 C6.48562138,5.89476687 6.25843254,5.6618983 6.25843254,5.37464038 C6.25843254,5.08738245 6.48562138,4.85451389 6.76587302,4.85451389 L9.47222222,4.85451389 C9.75247386,4.85451389 9.9796627,5.08738245 9.9796627,5.37464038 L9.9796627,8.32202381 L10.8253968,8.32202381 C11.1056485,8.32202381 11.3328373,8.55489237 11.3328373,8.8421503 C11.3328373,9.12940822 11.1056485,9.36227679 10.8253968,9.36227679 L9.47222222,9.36227679 C9.19197059,9.36227679 8.96478175,9.12940822 8.96478175,8.8421503 L8.96478175,5.89476687 Z"/>
+                    </g>
+                </svg>
+            </i>
+
+            <h2 class="ic-global-alert__headline">Ombud för David Disland</h2>
+
+            <button data-show-label="Visa mer" data-hide-label="Visa mindre" aria-label="Visa mindre" class="ic-global-alert__expand" type="button" aria-expanded="true">
+                <span aria-hidden="true">Visa mindre</span>
+            </button>
+
+            <div class="ic-global-alert__body">
+                Du agerar just nu ombud och utför därmed ärenden åt <strong>David Disland</strong>.
+                Den vårdgivare du har kontakt med som ombud kommer att se vem som har utfört ärendet.
+            </div>
+
+            <div class="ic-global-alert__footer">
+                <a href="javascript:void(0);" class="ic-link">Inställningar</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!--<div class="breadcrumbs-container">
+        <div class="breadcrumbs">
+            <o:form>
+                <a class="link" href="#{utilController.mvkStartPageLink}">Start</a>&#160;»&#160;<a class="link" href="#{utilController.mvkOtherServicesLink}">Övriga tjänster</a>&#160;»&#160;
+                <ui:repeat value="#{navigationController.views}" var="view_" varStatus="varStatus">
+                    <span class="link-section"><h:commandLink styleClass="link" value="#{view_.label}" action="#{navigationController.goBackTo(view_)}"/>
+                    <ui:fragment rendered="#{not varStatus.last}">
+                        &#160;»&#160;
+                    </ui:fragment>
+                    </span>
+                </ui:repeat>
+            </o:form>
+        </div>&lt;!&ndash;breadcrumbs&ndash;&gt;
+    </div>--><!--breadcrumbs-container-->
+
+    <main class="ic-page">
+
+        <div class="ic-container">
+
+            <nav aria-label="Brödsmulor" class="ic-breadcrumb iu-my-500 iu-hide-sm">
+                <span aria-hidden="true" class="ic-breadcrumb__label">Du är här: </span>
+                <ol>
+                    <li class="ic-breadcrumb__item">
+                        <a class="ic-breadcrumb__link" href="javascript:void(0)">Start</a>
+                    </li>
+                    <li class="ic-breadcrumb__item">
+                        <a class="ic-breadcrumb__link" href="javascript:void(0)">En undersida</a>
+                    </li>
+                    <li class="ic-breadcrumb__item">
+                        <a class="ic-breadcrumb__link" href="javascript:void(0)" aria-current="location">Rubrik</a>
+                    </li>
+                </ol>
+            </nav>
+
+            <div id="content">
+
+            <!--<h:panelGroup class="delegate-container clearfix" rendered="#{userProfileController.delegate}">
+                    <div class="delegate-block">
+                        <div class="delegate-header">
+                            <div class="_1177-delegate-title">
+                                <div class="_1177-header-info">
+                                    Du agerar just nu ombud och utför därmed ärenden åt <span class="delegate-name no-wrap">#{userProfileController.userProfile.firstName} #{userProfileController.userProfile.lastName}</span>
+                                    <span class="toggle-trigger info-icon expand" data-toggle-for="delegateInfo"/>
+                                    <div class="_1177-delegate-settings clearfix"><a class="_1177-delegate-settings-link link" href="#{utilController.settingsLink}">Inställningar</a></div>
+
+                                    <div id="delegateInfo" class="expanded-content" style="display: none;">
+                                        Den vårdgivare du har kontakt med ser vem som utför ärendet.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </h:panelGroup>
-<!--
+                </h:panelGroup>-->
 
-            <div class="breadcrumbs-container">
-                <div class="breadcrumbs">
-                    <o:form>
-                        <a class="link" href="#{utilController.mvkStartPageLink}">Start</a>&#160;»&#160;<a class="link" href="#{utilController.mvkOtherServicesLink}">Övriga tjänster</a>&#160;»&#160;
-                        <ui:repeat value="#{navigationController.views}" var="view_" varStatus="varStatus">
-                            <span class="link-section"><h:commandLink styleClass="link" value="#{view_.label}" action="#{navigationController.goBackTo(view_)}"/>
-                            <ui:fragment rendered="#{not varStatus.last}">
-                                &#160;»&#160;
-                            </ui:fragment>
-                            </span>
-                        </ui:repeat>
-                    </o:form>
-                </div>&lt;!&ndash;breadcrumbs&ndash;&gt;
-            </div>&lt;!&ndash;breadcrumbs-container&ndash;&gt;
+        <!--        </div>-->
 
--->
-
-        </div>
-
-        <div class="row-main">
-            <ui:insert name="mainContent"/>
-        </div>
-
-        <div id="footer" style="position: static;">
-            <div class="footer-shadow">
-                <div class="footer-bar">
-                    <div class="footer-bar-top">
-                        <div class="footer-header">
-                            <span class="footer-header-red">1177 Vårdguiden </span> - tryggt om din hälsa och vård
-                        </div>
-                        <div class="footer-bar-text-mobile">
-                            1177 Vårdguiden är en tjänst från Sveriges regioner. Vi finns alltid med dig när du vill må bättre.
-                        </div>
-                    </div>
-
-                    <div class="footer-bar-bottom">
-                        <div class="footer-bar-text">1177 Vårdguiden är en tjänst från Sveriges regioner. Vi finns alltid med dig när du vill må bättre.</div>
-                        <div class="footer-links">
-                            <ul>
-                                <li><a href="https://www.1177.se/e-tjanster-support" target="_blank" class="footer-link">
-                                    <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
-                                        <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                                    </svg>Teknisk support
-                                    <span style="height: 24px; width: 24px;">
-											<svg class="link-out-icon" viewBox="0 0 12 12">
-										        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
-										        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
-											</svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
-                                </li>
-                                <li><a href="https://e-tjanster.1177.se/mvk/sitemap.xhtml" class="footer-link">
-                                    <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
-                                        <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                                    </svg>Webbkarta</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li><a href="https://www.1177.se/e-tjanster" target="_blank" class="footer-link">
-                                    <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
-                                        <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                                    </svg>Läs mer om e-tjänster
-                                    <span style="height: 24px; width: 24px;">
-											<svg class="link-out-icon" viewBox="0 0 12 12">
-										        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
-										        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
-											</svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer-links-mobile">
-                            <div class="footer-link"><a href="https://www.1177.se/e-tjanster-support" target="_blank">Teknisk support
-                                <span style="height: 24px; width: 24px;">
-										<svg class="link-out-icon" viewBox="0 0 12 12">
-									        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
-									        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
-										</svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
-                            </div>
-                            <div class="footer-link"><a href="https://e-tjanster.1177.se/mvk/sitemap.xhtml">Webbkarta</a>
-                            </div>
-                            <div class="footer-link"><a href="https://www.1177.se/e-tjanster" target="_blank">Läs mer om e-tjänster
-                                <span style="height: 24px; width: 24px;">
-										<svg class="link-out-icon" viewBox="0 0 12 12">
-									        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
-									        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
-										</svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
-                            </div>
-                            <div class="footer-link">
-                                <div class="icon-1177"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-image-secondary"></div>
-                <div class="footer-bottom-filler"></div>
+<!--                <div class="row-main">-->
+                    <ui:insert name="mainContent"/>
+<!--                </div>-->
             </div>
         </div>
+    </main>
+    <div id="footer" style="position: static;">
+        <div class="footer-shadow">
+            <div class="footer-bar">
+                <div class="footer-bar-top">
+                    <div class="footer-header">
+                        <span class="footer-header-red">1177 Vårdguiden </span> - tryggt om din hälsa och vård
+                    </div>
+                    <div class="footer-bar-text-mobile">
+                        1177 Vårdguiden är en tjänst från Sveriges regioner. Vi finns alltid med dig när du vill må bättre.
+                    </div>
+                </div>
+
+                <div class="footer-bar-bottom">
+                    <div class="footer-bar-text">1177 Vårdguiden är en tjänst från Sveriges regioner. Vi finns alltid med dig när du vill må bättre.</div>
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="https://www.1177.se/e-tjanster-support" target="_blank" class="footer-link">
+                                <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
+                                    <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                                </svg>Teknisk support
+                                <span style="height: 24px; width: 24px;">
+                                        <svg class="link-out-icon" viewBox="0 0 12 12">
+                                            <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
+                                            <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
+                                        </svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
+                            </li>
+                            <li><a href="https://e-tjanster.1177.se/mvk/sitemap.xhtml" class="footer-link">
+                                <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
+                                    <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                                </svg>Webbkarta</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li><a href="https://www.1177.se/e-tjanster" target="_blank" class="footer-link">
+                                <svg style="width:24px;height:24px;vertical-align:middle;margin-right:.5rem;" viewBox="0 0 24 24">
+                                    <path fill="#c12143" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                                </svg>Läs mer om e-tjänster
+                                <span style="height: 24px; width: 24px;">
+                                        <svg class="link-out-icon" viewBox="0 0 12 12">
+                                            <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
+                                            <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
+                                        </svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-mobile">
+                        <div class="footer-link"><a href="https://www.1177.se/e-tjanster-support" target="_blank">Teknisk support
+                            <span style="height: 24px; width: 24px;">
+                                    <svg class="link-out-icon" viewBox="0 0 12 12">
+                                        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
+                                        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
+                                    </svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
+                        </div>
+                        <div class="footer-link"><a href="https://e-tjanster.1177.se/mvk/sitemap.xhtml">Webbkarta</a>
+                        </div>
+                        <div class="footer-link"><a href="https://www.1177.se/e-tjanster" target="_blank">Läs mer om e-tjänster
+                            <span style="height: 24px; width: 24px;">
+                                    <svg class="link-out-icon" viewBox="0 0 12 12">
+                                        <path d="M10.76 5.888a.383.383 0 01.767 0 5.644 5.644 0 01-5.639 5.639A5.644 5.644 0 01.25 5.888 5.644 5.644 0 015.888.25a.383.383 0 110 .766 4.878 4.878 0 00-4.872 4.872 4.878 4.878 0 004.872 4.872 4.878 4.878 0 004.872-4.872z"></path>
+                                        <path d="M8.792.716h1.856c.207 0 .375.168.375.375v1.856a.375.375 0 01-.75 0v-.95L5.855 6.412a.375.375 0 11-.53-.53l4.416-4.417h-.95a.375.375 0 110-.75z"></path>
+                                    </svg></span></a><!-- No new line after </svg> since it causes an extra underlined space in IE -->
+                        </div>
+                        <div class="footer-link">
+                            <div class="icon-1177"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-image-secondary"></div>
+            <div class="footer-bottom-filler"></div>
+        </div>
     </div>
+<!--    </div>-->
 
     <script type="text/javascript">
         jq(document).ready(function () {

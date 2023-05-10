@@ -1,6 +1,7 @@
-/********************
+/*
+!********************
  * General
- ********************/
+ ********************!
 
 .mvkcomp.button {
     display: block;
@@ -28,9 +29,9 @@
     border-radius: 5px;
 }
 
-/*********************
+!*********************
  * BoxContainer
- *********************/
+ *********************!
 
 .mvkcomp.boxContainer > .bottom,
 .mvkcomp.boxContainer > .top {
@@ -118,9 +119,9 @@
 
 
 
-/******************
+!******************
  * Item List
- ******************/
+ ******************!
 
 .mvkcomp.itemList {
     list-style:none;
@@ -135,7 +136,7 @@
     margin:0;
 }
 
-/* */
+!* *!
 
 .mvkcomp.listDetailNavigation {
     cursor:pointer;
@@ -194,7 +195,7 @@
     background-repeat: repeat-y;
 }
 
-/* */
+!* *!
 
 .mvkcomp.listDetailToggle .header,
 .mvkcomp.listDetailToggle .footer,
@@ -252,9 +253,9 @@
     border-top:none;
 }
 
-/*******************
+!*******************
  * List item base
- *******************/
+ *******************!
 
 .mvkcomp.listItemBase {
     padding-left:10px;
@@ -311,9 +312,9 @@
     top: 0.8em;
 }
 
-/**********************
+!**********************
  * Custom select
- **********************/
+ **********************!
 
 .mvkcomp .custom-select-container {
     position: relative;
@@ -379,9 +380,9 @@
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-/**************************
+!**************************
  * Checkbox / Radio
- **************************/
+ **************************!
 
 .mvkcomp.selectOneRadio .radioButtonLabel,
 .mvkcomp.checkbox .checkboxLabel {
@@ -427,9 +428,9 @@
     background-image: url("/mvk/javax.faces.resource/images/radio_active_focus.png.xhtml?ln=mvkcomponents");
 }
 
-/**********************
+!**********************
  * Back button
- **********************/
+ **********************!
 
 a.mvkcomp.backButton {
     float: left;
@@ -456,9 +457,9 @@ a.mvkcomp.backButton:hover span {
 }
 
 
-/**********************
+!**********************
  * Continue abort button
- **********************/
+ **********************!
 
 
 .mvkcomp.continueAbort {
@@ -484,9 +485,9 @@ a.mvkcomp.backButton:hover span {
 
 @media all and (max-width:800px) {
 
-    /******************
+    !******************
      * Item List
-     ******************/
+     ******************!
 
     .mvkcomp.listDetailNavigation .boxContainerBody {
         padding-right: 25px !important;
@@ -506,9 +507,9 @@ a.mvkcomp.backButton:hover span {
         padding-left:35px;
     }
 
-    /*****************
+    !*****************
      * List Item Base
-     *****************/
+     *****************!
 
     .mvkcomp.listItemBase .mainBody {
         padding-bottom: 10px;
@@ -533,9 +534,9 @@ a.mvkcomp.backButton:hover span {
         font-size: 0.8125em;
     }
 
-    /****************
+    !****************
      * Custom select
-     ****************/
+     ****************!
 
     .mvkcomp select.custom.replaced {
         height:2em;
@@ -555,4 +556,4 @@ a.mvkcomp.backButton:hover span {
     .mvkcomp.subRowOnTop.listItemBase .subRow {
         font-size: 0.75em;
     }
-}
+}*/
