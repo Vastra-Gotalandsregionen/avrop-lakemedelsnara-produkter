@@ -1,0 +1,45 @@
+/* Styling specific to the app "Läkemedelsnära Produkter" */
+
+html {
+}
+
+/* Additions to Inera-CSS */
+
+.ic-badge-color-attention {
+    background-color: lightyellow;
+    color: #1e1e1e;
+    border: 1px solid #1e1e1e;
+}
+
+/* Products table */
+
+.lnp-products-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.lnp-products-table .col-select {
+    width: 30px;
+}
+
+.lnp-products-table .col-select .ic-forms__checkbox + label {
+    justify-content: center;
+}
+
+.lnp-products-table .col-product-group {
+    width: 150px;
+}
+
+.lnp-products-table .col-article {}
+
+.lnp-products-table .col-count {
+    width: 200px;
+}
+
+.lnp-products-table .col-info {
+    width: 250px;
+}
+
+.lnp-products-table .ic-link-list li:first-child {
+    margin-left: 0;
+}

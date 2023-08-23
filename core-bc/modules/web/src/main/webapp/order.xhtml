@@ -3,10 +3,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:mvk="http://java.sun.com/jsf/composite/component/mvk"
       xmlns:o="http://omnifaces.org/ui"
       xmlns:of="http://omnifaces.org/functions"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
 >
 
 <ui:composition template="WEB-INF/xhtml/template/wideContent.xhtml">
@@ -22,152 +23,172 @@
 
     <ui:define name="boxContent">
 
+
         <div style="display: none">#{orderController} This reference is needed in order to make possible message be added before the h:messages tag is rendered.</div>
 
         <o:messages showSummary="true" styleClass="alert alert-danger" escape="false"/>
 
-        <section class="ic-section ic-sectioddn-intro">
+        <section class="ic-section">
             <h1>Mina förskrivna förbrukningsprodukter</h1>
-            <p>
+
+            <p class="ic-preamble">
                 Här kan du beställa dina förskrivna förbrukningsprodukter. Du kan få dem levererade till ett utlämningsställe, din bostad eller annan leveransadress.
             </p>
+
             <p>
                 Nedan ser du både vilka produkter du kan beställa och vilka som finns men inte går att beställa just nu. Klicka på plustecknet vid tidigare produkter så hittar du gamla recept från 12 månader tillbaka i tiden som inte längre är giltiga.
             </p>
+
+
         </section>
 
-        <section class="ic-section">
+
+        <section class="ic-section ic-section--no-padding">
 
             <o:form includeRequestParams="true">
 
-                <h:panelGroup layout="block" rendered="#{empty orderController.medicalSupplyPrescriptions}" styleClass="alert alert-warning">
-                    #{msg['products.fetch.none.found']}
-                    <div><h:commandButton styleClass="button" action="#{orderController.reinit()}" value="Uppdatera"/> </div>
-                </h:panelGroup>
+                <ul class="ic-expandables-group">
+                    <li class="">
+                        <details class="ic-expandable" jsf:id="currentProductsSection">
+                            <f:passThroughAttribute name="open" value="" />
+                            <summary class="ic-expandable-button ic-expandable-button--plusminus-circle">
+                                Nuvarande förskrivna produkter (#{orderController.medicalSupplyPrescriptions.size()} st)
+                            </summary>
 
-                <h:panelGroup rendered="#{orderController.medicalSupplyPrescriptions.size() gt 0}">
+                            <div class="iu-pt-1em">
+                                <h:panelGroup layout="block" rendered="#{empty orderController.medicalSupplyPrescriptions}" styleClass="alert alert-warning">
+                                    #{msg['products.fetch.none.found']}
+                                    <div><h:commandButton styleClass="button" action="#{orderController.reinit()}" value="Uppdatera"/> </div>
+                                </h:panelGroup>
 
-                    <table class="ic-table" style="table-layout: fixed">
-                        <thead>
-                        <tr>
-                            <th class="column-0">Välj</th>
-                            <th class="column-1">Produktgrupp</th>
-                            <th class="column-2">Artikel</th>
-                            <th class="column-3">Uttag kvar / antal uttag</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <ui:repeat value="#{orderController.medicalSupplyPrescriptions}" var="item" varStatus="status">
-                            <tr class="#{utilController.isAfterToday(item.nextEarliestOrderDate) or (not item.article.isOrderable)? 'unavailable-row' : ''}">
-                                <td>
-                                    <h:panelGroup styleClass="checkbox" rendered="#{not utilController.isAfterToday(item.nextEarliestOrderDate) and item.article.isOrderable}">
-                                        <h:selectBooleanCheckbox styleClass="ic-forms__checkbox" id="subscriptionCheckbox" value="#{orderController.chosenItemMap[item.prescriptionItemId]}" />
-                                        <h:outputLabel for="subscriptionCheckbox" />
-                                    </h:panelGroup>
-                                </td>
-                                <td>
-                                    #{utilController.capitalizeFully(item.article.productArea)}
-                                </td>
-                                <td>
-                                    <div class="bold">
-                                        <h:panelGroup layout="block" class="alert-text" rendered="#{not item.article.isOrderable}">
-                                            Ej beställningsbar
-                                            <span class="toggle-trigger info-icon expand" data-toggle-for="notOrderable#{status.index}"/>
-                                            <div id="notOrderable#{status.index}" class="expanded-content" style="display: none;">
-                                                Kontakta kundtjänst på telefon #{msg['customer.service.phone']} vid eventuella frågor.
-                                            </div>
-                                        </h:panelGroup>
-                                        <h:panelGroup layout="block" class="alert-text" rendered="#{item.article.isOrderable and utilController.isAfterToday(item.nextEarliestOrderDate)}">
-                                            Nästa uttag kan beställas tidigast
-                                            <h:outputText value="#{utilController.toDate(item.nextEarliestOrderDate)}">
-                                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
-                                            </h:outputText>.
-                                        </h:panelGroup>
-                                        <div>#{item.article.articleName}</div>
-                                    </div>
-                                    <div>Artikel-nr: #{item.article.articleNo}</div>
-                                    <mvk:moreInfo item="#{item}"/>
-                                    <!--<div class="dev-temp" style="font-size: .7em;">
-                                        <em>DEBUG INFO</em>
-                                        <table>
-                                            <ui:repeat value="#{item.deliveryAlternative}" var="alternative">
-                                                <tr>
-                                                    <td>#{alternative.deliveryMethod} - #{alternative.servicePointProvider}</td>
-                                                    <td>Val utlämningsställe: #{alternative.allowChioceOfDeliveryPoints}</td>
-                                                    <ui:repeat value="#{alternative.deliveryNotificationMethod}" var="method">
-                                                        <td>
-                                                            #{method}
-                                                        </td>
-                                                    </ui:repeat>
-                                                </tr>
-                                            </ui:repeat>
-                                        </table>
-                                        &lt;!&ndash;<ul>
-                                            <ui:repeat value="#{item.deliveryAlternative}" var="alternative">
-                                                <li>
-                                                    #{alternative.deliveryMethod} - #{alternative.servicePointProvider}
-                                                    <ol>
-                                                        <ui:repeat value="#{alternative.deliveryNotificationMethod}" var="method">
-                                                            <li>
-                                                                #{method}
-                                                            </li>
-                                                        </ui:repeat>
-                                                    </ol>
-                                                </li>
-                                            </ui:repeat>
-                                        </ul>&ndash;&gt;
-                                        #{not empty item.subArticle ? 'Underartiklar!!!!' : null}
-                                    </div>-->
-                                </td>
-                                <td>
-                                    #{item.noOfRemainingOrders}/#{item.noOfOrders}
-                                </td>
-                            </tr>
-                        </ui:repeat>
-                        </tbody>
-                    </table>
-                </h:panelGroup>
+                                <h:panelGroup rendered="#{orderController.medicalSupplyPrescriptions.size() gt 0}">
+                                    <table class="ic-table lnp-products-table">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-select iu-text-center">
+                                                Välj
+                                            </th>
+                                            <th class="col-product-group">
+                                                Produktgrupp
+                                            </th>
+                                            <th class="col-article">
+                                                Artikel
+                                            </th>
+                                            <th class="col-count">
+                                                <div class="iu-text-right">Uttag kvar / antal uttag</div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <ui:repeat value="#{orderController.medicalSupplyPrescriptions}" var="item" varStatus="status">
+                                            <tr class="#{utilController.isAfterToday(item.nextEarliestOrderDate) or (not item.article.isOrderable)? 'unavailable-row' : ''}">
+                                                <td class="col-select iu-text-center">
+                                                    <h:panelGroup styleClass="checkbox" rendered="#{not utilController.isAfterToday(item.nextEarliestOrderDate) and item.article.isOrderable}">
+                                                        <h:selectBooleanCheckbox styleClass="ic-forms__checkbox" id="subscriptionCheckbox" value="#{orderController.chosenItemMap[item.prescriptionItemId]}" />
+                                                        <h:outputLabel for="subscriptionCheckbox" />
+                                                    </h:panelGroup>
+                                                    <h:panelGroup styleClass="checkbox" rendered="#{utilController.isAfterToday(item.nextEarliestOrderDate) or not item.article.isOrderable}">
+                                                        -
+                                                    </h:panelGroup>
+                                                </td>
+                                                <td>
+                                                    #{utilController.capitalizeFully(item.article.productArea)}
+                                                </td>
+                                                <td>
+                                                    <div class="iu-fw-bold">
 
-                <hr/>
+                                                        <h:panelGroup layout="block" class="iu-mt-300 iu-mb-300" rendered="#{not item.article.isOrderable}">
+                                                            <span class="ic-badge-status ic-badge-color-attention ic-badge--small">
+                                                                Ej beställningsbar
+                                                            </span>
 
-                <h4 class="toggle-trigger with-text plus-icon expand" data-toggle-for="collected-products-wrapper">Tidigare förskrivna produkter, #{orderController.noLongerOrderableMedicalSupplyPrescriptions.size()} st</h4>
+                                                            <ui:fragment rendered="#{false}">
+                                                                <span class="toggle-trigger info-icon expand" data-toggle-for="notOrderable#{status.index}"/>
+                                                                <div id="notOrderable#{status.index}" class="expanded-content" style="display: none;">
+                                                                    Kontakta kundtjänst på telefon #{msg['customer.service.phone']} vid eventuella frågor.
+                                                                </div>
+                                                            </ui:fragment>
+                                                        </h:panelGroup>
+                                                        <h:panelGroup layout="block" class="iu-mt-300 iu-mb-300" rendered="#{item.article.isOrderable and utilController.isAfterToday(item.nextEarliestOrderDate)}">
+                                                            <span class="ic-badge-status ic-badge-color-attention ic-badge--small">
+                                                            Nästa uttag kan beställas tidigast
+                                                            <h:outputText value="#{utilController.toDate(item.nextEarliestOrderDate)}">
+                                                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
+                                                            </h:outputText>
+                                                            </span>
+                                                        </h:panelGroup>
+                                                        <div>#{item.article.articleName}</div>
+                                                    </div>
+                                                    <div>Artikel-nr: #{item.article.articleNo}</div>
+                                                    <mvk:moreInfo item="#{item}"/>
+                                                </td>
+                                                <td class="iu-text-right">
+                                                    #{item.noOfRemainingOrders}/#{item.noOfOrders}
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                        </tbody>
+                                    </table>
+                                </h:panelGroup>
+                            </div>
+                        </details>
+                    </li>
+                    <li class="">
+                        <details class="ic-expandable" jsf:id="previousProductsSection">
+                            <summary class="ic-expandable-button ic-expandable-button--plusminus-circle">
+                                Tidigare förskrivna produkter (#{orderController.noLongerOrderableMedicalSupplyPrescriptions.size()} st)
+                            </summary>
+                            <div class="iu-pt-1em">
+                                <table class="ic-table lnp-products-table" style="width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-select iu-text-center">
+                                            Välj
+                                        </th>
+                                        <th class="col-product-group">
+                                            Produktgrupp
+                                        </th>
+                                        <th class="col-article">
+                                            Artikel
+                                        </th>
+                                        <th class="col-info">
+                                            Information
+                                        </th>
+                                        <th class="col-count">
+                                            <div class="iu-text-right">Uttag kvar / antal uttag</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <ui:repeat value="#{orderController.noLongerOrderableMedicalSupplyPrescriptions}" var="expiredItem">
+                                        <tr class="unavailable-row">
+                                            <td class="col-select iu-text-center">
+                                                <span>-</span>
+                                            </td>
+                                            <td class="col-product-group">
+                                                #{utilController.capitalizeFully(expiredItem.article.productArea)}<br/>#{expiredItem.article.articleNo}
+                                            </td>
+                                            <td class="col-article">
+                                                <div class="iu-fw-bold">#{expiredItem.article.articleName}</div>
+                                                <div>Artikel-nr: #{expiredItem.article.articleNo}</div>
+                                                <mvk:moreInfo item="#{expiredItem}"/>
+                                            </td>
+                                            <td class="col-info">
+                                                #{utilController.getStatusText(expiredItem)}
+                                            </td>
+                                            <td class="col-count iu-text-right">
+                                                <span class="#{expiredItem.noOfRemainingOrders le 0 ? 'alert-text' : ''}">#{expiredItem.noOfRemainingOrders} / #{expiredItem.noOfOrders}</span>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
 
-                <span class="toggle-trigger info-icon expand" data-toggle-for="collectedProductsInfo"/>
+                                    </tbody>
 
-                <div id="collectedProductsInfo" class="expanded-content" style="display: none;">
-                    Dina förskrivna och uthämtade förbrukningsprodukter
-                </div>
-
-                <div id="collected-products-wrapper" style="display: none;">
-                    <table class="avrop-table my-products-table contentFontSize collected-expired-products" style="table-layout: fixed">
-                    <thead>
-                    <tr>
-                        <td class="column-0">Information</td>
-                        <td class="column-1">Produktgrupp</td>
-                        <td class="column-2">Artikel</td>
-                        <td class="column-3">Uttag kvar / antal uttag</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <ui:repeat value="#{orderController.noLongerOrderableMedicalSupplyPrescriptions}" var="expiredItem">
-                        <tr class="unavailable-row">
-                            <td>
-                                #{utilController.getStatusText(expiredItem)}
-                            </td>
-                            <td>#{utilController.capitalizeFully(expiredItem.article.productArea)}<br/>#{expiredItem.article.articleNo}</td>
-                            <td>
-                                <div class="bold">#{expiredItem.article.articleName}</div>
-                                <div>Artikel-nr: #{expiredItem.article.articleNo}</div>
-                                <mvk:moreInfo item="#{expiredItem}"/>
-                            </td>
-                            <td><span class="#{expiredItem.noOfRemainingOrders le 0 ? 'alert-text' : ''}">#{expiredItem.noOfRemainingOrders} / #{expiredItem.noOfOrders}</span></td>
-                        </tr>
-                    </ui:repeat>
-
-                    </tbody>
-
-                    </table>
-                </div>
+                                </table>
+                            </div>
+                        </details>
+                    </li>
+                </ul>
 
                 <div class="ic-button-group ic-button-group--right">
                     <h:commandButton styleClass="ic-button full-page-submit" value="Nästa" action="#{orderController.toDelivery}" disabled="#{orderController.medicalSupplyPrescriptions.size() eq 0}" />

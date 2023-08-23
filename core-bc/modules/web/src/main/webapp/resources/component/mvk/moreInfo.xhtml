@@ -6,88 +6,163 @@
               xmlns:composite="http://java.sun.com/jsf/composite"
               xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<composite:interface>
-    <composite:attribute name="item"/>
-</composite:interface>
+    <composite:interface>
+        <composite:attribute name="item"/>
+    </composite:interface>
 
-<composite:implementation>
+    <composite:implementation>
 
-    <c:set var="item" value="#{cc.attrs.item}"/>
+        <c:set var="item" value="#{cc.attrs.item}"/>
 
-    <div>
-        <div class="link-row">
-            <a href="#" class="show-more-link">
-                Mer info
+        <div>
+
+            <a href="javascript:void(0)" class="ic-link show-more-link">
+                <span>Mer info</span>
             </a>
-            <a href="#" class="show-less-link" style="display: none;">
-                Mindre info
+
+            <a href="javascript:void(0)" class="ic-link show-less-link" style="display: none;">
+                <span>Mindre info</span>
             </a>
-            <h:panelGroup rendered="#{not empty item.article.articleImage}">
-                <a href="#" class="image-preview-link" data-image-url="#{item.article.articleImage.original}">
-                    Visa bild
+
+            <ui:fragment rendered="#{not empty item.article.articleImage}">
+                <a href="javascript:void(0)" class="ic-link image-preview-link iu-ml-1em" data-image-url="#{item.article.articleImage.original}">
+                    <span>Visa bild</span>
                 </a>
-            </h:panelGroup>
-        </div>
-        <div class="more-info" style="display: none;">
-            <table class="embedded-table">
-                <thead>
-                <tr>
-                    <td style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-cell'}">Förpackning / uttag</td>
-                    <td>Totalt antal styck / uttag</td>
-                    <td style="display: #{empty item.grossPrice and empty item.article.grossPrice ? 'none' : 'table-cell'}">Pris per uttag</td>
-                    <td>Förskrivare</td>
-                    <td class="#{empty item.prescribingOrganization ? 'hidden' : ''}">Förskrivande enhet</td>
-                    <td>Giltigt t.o.m.</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-cell'}">#{item.noOfPackagesPerOrder}</td>
-                    <td>#{item.noOfArticlesPerOrder}</td>
-                    <td style="display: #{empty item.grossPrice and empty item.article.grossPrice ? 'none' : 'table-cell'}">#{not empty item.grossPrice ? item.grossPrice:  item.article.grossPrice }</td>
-                    <td>#{item.prescriber.prescriberName}</td>
-                    <td class="#{empty item.prescribingOrganization ? 'hidden' : ''}">#{item.prescribingOrganization.prescribingOrganizationName}</td>
-                    <td>
-                        <h:outputText value="#{utilController.toDate(item.lastValidDate)}">
-                            <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
-                        </h:outputText>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            </ui:fragment>
 
-            <table class="embedded-table small-screen">
-                <tr style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-row'}">
-                    <td class="column-0">Förpackning/uttag</td>
-                    <td>#{item.noOfPackagesPerOrder}</td>
-                </tr>
-                <tr>
-                    <td class="column-0">Totalt antal styck/uttag</td>
-                    <td>#{item.noOfArticlesPerOrder}</td>
-                </tr>
-                <tr style="display: #{empty item.grossPrice and empty item.article.grossPrice  ? 'none' : 'table-row'}">
-                    <td class="column-0">Pris per uttag</td>
-                    <td>#{not empty item.grossPrice ? item.grossPrice:  item.article.grossPrice }</td>
-                </tr>
-                <tr>
-                    <td class="column-0">Förskrivare</td>
-                    <td>#{item.prescriber.prescriberName}</td>
-                </tr>
-                <tr class="${empty item.prescribingOrganization ? 'hidden' : ''}">
-                    <td class="column-0">Förskrivande organisation</td>
-                    <td>#{item.prescribingOrganization.prescribingOrganizationName}</td>
-                </tr>
-                <tr>
-                    <td class="column-0">Giltigt t.o.m.</td>
-                    <td>
-                        <h:outputText value="#{utilController.toDate(item.lastValidDate)}">
-                            <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
-                        </h:outputText>
-                    </td>
-                </tr>
-            </table>
+
+            <ui:fragment rendered="#{false}">
+                <ul class="ic-link-list">
+                    <li>
+                        <a href="#" class="show-more-link">
+                            Mer info
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="show-less-link" style="display: none;">
+                            Mindre info
+                        </a>
+                    </li>
+                    <li>
+                        <h:panelGroup rendered="#{not empty item.article.articleImage}">
+                            <a href="#" class="image-preview-link" data-image-url="#{item.article.articleImage.original}">
+                                Visa bild
+                            </a>
+                        </h:panelGroup>
+                    </li>
+                </ul>
+
+            </ui:fragment>
+            <div class="more-info" style="display: none;">
+
+                <dl class="ic-definition-list--md iu-mt-300">
+                    <ui:fragment rendered="#{item.noOfPackagesPerOrder > 0}">
+                        <dt>
+                            Förpackning / uttag
+                        </dt>
+                        <dl>
+                            #{item.noOfPackagesPerOrder}
+                        </dl>
+                    </ui:fragment>
+
+                    <ui:fragment>
+                        <dt>
+                            Totalt antal styck / uttag
+                        </dt>
+                        <dl>
+                            #{item.noOfArticlesPerOrder}
+                        </dl>
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{not empty item.grossPrice || not empty item.article.grossPrice}">
+                        <dt>
+                            Pris per uttag
+                        </dt>
+                        <dl>
+                            #{not empty item.grossPrice ? item.grossPrice:  item.article.grossPrice }
+                        </dl>
+                    </ui:fragment>
+                    <ui:fragment rendered="#{not empty item.prescribingOrganization}">
+                        <dt>
+                            Förskrivande enhet
+                        </dt>
+                        <dl>
+                            #{item.prescribingOrganization.prescribingOrganizationName}
+                        </dl>
+                    </ui:fragment>
+                    <ui:fragment>
+                        <dt>
+                            Giltigt t.o.m.
+                        </dt>
+                        <dl>
+                            <h:outputText value="#{utilController.toDate(item.lastValidDate)}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
+                            </h:outputText>
+                        </dl>
+                    </ui:fragment>
+                </dl>
+
+                <!--
+                <table class="embedded-table">
+                    <thead>
+                    <tr>
+                        <td style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-cell'}">Förpackning / uttag</td>
+                        <td>Totalt antal styck / uttag</td>
+                        <td style="display: #{empty item.grossPrice and empty item.article.grossPrice ? 'none' : 'table-cell'}">Pris per uttag</td>
+                        <td>Förskrivare</td>
+                        <td class="#{empty item.prescribingOrganization ? 'hidden' : ''}">Förskrivande enhet</td>
+                        <td>Giltigt t.o.m.</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-cell'}">#{item.noOfPackagesPerOrder}</td>
+                        <td>#{item.noOfArticlesPerOrder}</td>
+                        <td style="display: #{empty item.grossPrice and empty item.article.grossPrice ? 'none' : 'table-cell'}">#{not empty item.grossPrice ? item.grossPrice:  item.article.grossPrice }</td>
+                        <td>#{item.prescriber.prescriberName}</td>
+                        <td class="#{empty item.prescribingOrganization ? 'hidden' : ''}">#{item.prescribingOrganization.prescribingOrganizationName}</td>
+                        <td>
+                            <h:outputText value="#{utilController.toDate(item.lastValidDate)}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
+                            </h:outputText>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="embedded-table small-screen">
+                    <tr style="display: #{item.noOfPackagesPerOrder == 0 ? 'none' : 'table-row'}">
+                        <td class="column-0">Förpackning/uttag</td>
+                        <td>#{item.noOfPackagesPerOrder}</td>
+                    </tr>
+                    <tr>
+                        <td class="column-0">Totalt antal styck/uttag</td>
+                        <td>#{item.noOfArticlesPerOrder}</td>
+                    </tr>
+                    <tr style="display: #{empty item.grossPrice and empty item.article.grossPrice  ? 'none' : 'table-row'}">
+                        <td class="column-0">Pris per uttag</td>
+                        <td>#{not empty item.grossPrice ? item.grossPrice:  item.article.grossPrice }</td>
+                    </tr>
+                    <tr>
+                        <td class="column-0">Förskrivare</td>
+                        <td>#{item.prescriber.prescriberName}</td>
+                    </tr>
+                    <tr class="${empty item.prescribingOrganization ? 'hidden' : ''}">
+                        <td class="column-0">Förskrivande organisation</td>
+                        <td>#{item.prescribingOrganization.prescribingOrganizationName}</td>
+                    </tr>
+                    <tr>
+                        <td class="column-0">Giltigt t.o.m.</td>
+                        <td>
+                            <h:outputText value="#{utilController.toDate(item.lastValidDate)}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Europe/Stockholm"/>
+                            </h:outputText>
+                        </td>
+                    </tr>
+                </table>
+                -->
+            </div>
         </div>
-    </div>
-</composite:implementation>
+    </composite:implementation>
 
 </ui:component>
