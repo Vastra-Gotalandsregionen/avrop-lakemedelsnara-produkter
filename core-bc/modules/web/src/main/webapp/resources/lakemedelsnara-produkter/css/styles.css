@@ -1,6 +1,9 @@
 /* Styling specific to the app "Läkemedelsnära Produkter" */
 
 html {
+    --lnp-color-bg-main: #c12143;
+    --lnp-color-bg-secondary-light: #faeef0;
+    --lnp-color-bg-gray-300: #e0e0e0;
 }
 
 /* Additions to Inera-CSS */
@@ -9,6 +12,76 @@ html {
     background-color: lightyellow;
     color: #1e1e1e;
     border: 1px solid #1e1e1e;
+}
+
+/* Status bar */
+.lnp-status-bar {
+    --lnp-status-bar-marker-size: 30px;
+
+    --lnp-status-bar-marker-color-default-bg: var(--lnp-color-bg-gray-300);
+    --lnp-status-bar-marker-color-default-border: var(--lnp-color-bg-gray-300);
+
+    --lnp-status-bar-marker-color-active-bg: var(--lnp-color-bg-secondary-light);
+    --lnp-status-bar-marker-color-active-border: var(--lnp-color-bg-main);
+
+    --lnp-status-bar-marker-color-done-bg: var(--lnp-color-bg-main);
+    --lnp-status-bar-marker-color-done-border: var(--lnp-color-bg-main);
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+}
+
+.lnp-status-bar:after {
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--lnp-status-bar-marker-color-default-bg);
+    position: absolute;
+    left: 0;
+    top: calc(var(--lnp-status-bar-marker-size) / 2);
+}
+
+.lnp-status-bar li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.lnp-status-bar li .status-item-marker {
+    background: var(--lnp-status-bar-marker-color-default-bg);
+    border: 1px solid var(--lnp-status-bar-marker-color-default-border);
+    width: var(--lnp-status-bar-marker-size);
+    height: var(--lnp-status-bar-marker-size);
+    border-radius: 50%;
+
+}
+
+.lnp-status-bar li.done .status-item-marker {
+    background: var(--lnp-status-bar-marker-color-done-bg);
+    border-color: var(--lnp-status-bar-marker-color-done-border);
+}
+
+.lnp-status-bar li.active .status-item-marker {
+    background: var(--lnp-status-bar-marker-color-active-bg);
+    border-color: var(--lnp-status-bar-marker-color-active-border);
+}
+
+.lnp-status-bar li .status-item-label {
+    margin-top: 0.5rem;
+    max-width: 100px;
+    text-align: center;
+}
+
+.lnp-status-bar li.active .status-item-label,
+.lnp-status-bar li.done .status-item-label  {
+    color: var(--lnp-color-bg-main);
 }
 
 /* Products table */
