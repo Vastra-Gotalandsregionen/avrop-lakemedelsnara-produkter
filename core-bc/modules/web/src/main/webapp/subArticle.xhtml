@@ -21,15 +21,25 @@
 
         <o:messages showSummary="true" styleClass="alert alert-danger" escape="false"/>
 
-        <section class="ic-section">
-            <h1>Fördela antal underartiklar</h1>
+        <section class="ic-section iu-mt-900">
+            <h1>
+                <h:outputText escape="false" value="#{messageController.getMessage('hero.title')}"/>
+            </h1>
             <p class="ic-preamble">
+                <h:outputText escape="false" value="#{messageController.getMessage('hero.intro')}"/>
+            </p>
+        </section>
+
+        <section class="ic-section ic-section--no-padding">
+            <h2 class="iu-mb-05rem">
+                Fördela antal underartiklar
+            </h2>
+            <p>
                 Ange antal för att ändra fördelningen.
             </p>
         </section>
 
-
-        <div>
+        <section class="ic-section ic-section--no-padding">
 
             <h:form class="sub-article-form">
                 <div id="app" v-cloak="" class="sub-article-form">
@@ -123,7 +133,7 @@
                 <script type="text/javascript" src="javax.faces.resource/js/sub-articles.js.xhtml?ln=default"></script>
 
             </h:form>
-        </div>
+        </section>
     </ui:define>
 
 </ui:composition>
